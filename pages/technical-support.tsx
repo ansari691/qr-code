@@ -6,6 +6,7 @@ import {
   FormControlLabel,
   Radio,
   CircularProgress,
+  Box,
 } from '@mui/material';
 import { useRouter } from 'next/dist/client/router';
 import { AppContext } from './_app';
@@ -163,7 +164,7 @@ const Troubleshooting = () => {
       <div
         style={{
           display: 'flex',
-          padding: '30px',
+          // padding: '30px',
           paddingBottom: '0px',
           justifyContent: 'center',
           marginBottom: 20,
@@ -171,25 +172,34 @@ const Troubleshooting = () => {
         }}
       >
         {/* left */}
-        <div style={{ paddingRight: 20 }}>
-          <img
-            src={
-              productData?.heaterUnitImageLink
-                ? productData?.heaterUnitImageLink
-                : '/no-image-found.png'
-            }
-            height="100%"
-            width="100%"
-            // maxHeight="100%"
-            // width="100%"
-          />
-        </div>
+        <Box
+            sx={{
+              px: productData?.heaterUnitImageLink ? 0 : 5,
+              py: productData?.heaterUnitImageLink ? 0 : 0,
+            }}
+          >
+            {productData?.heaterUnitImageLink ? (
+              <img
+                height={'100%'}
+                width="100%"
+                src={productData?.heaterUnitImageLink}
+              />
+            ) : (
+              <img
+                height={'75%'}
+                width={'75%'}
+                src={'/no-image-found.png'}
+                style={{ paddingTop: 30, marginLeft: 20, marginRight: 20 }}
+              />
+            )}
+          </Box>
         {/* right */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            marginRight: 20
           }}
         >
           <div style={{ marginBottom: 20 }}>
