@@ -13,7 +13,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { API } from '../constants/Api';
 import { formatDistance, isAfter } from 'date-fns';
 import { BRANDS, FINDCONTRACTORLINK } from '../constants/brands';
-import { CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { NoProductFound } from '../components/NoProductFound';
 
 const ProductDetail = ({ title, value }: any) => {
@@ -159,32 +159,41 @@ const Home: NextPage = () => {
         <div
           style={{
             display: 'flex',
-            padding: '30px',
+            // padding: '30px',
             paddingBottom: '0px',
             justifyContent: 'center',
             minHeight: 250,
           }}
         >
           {/* left */}
-          <div style={{ paddingRight: 20 }}>
-            <img
-              src={
-                productData?.heaterUnitImageLink
-                  ? productData?.heaterUnitImageLink
-                  : '/no-image-found.png'
-              }
-              height="100%"
-              width="100%"
-              // maxHeight="100%"
-              // width="100%"
-            />
-          </div>
+          <Box
+            sx={{
+              px: productData?.heaterUnitImageLink ? 0 : 5,
+              py: productData?.heaterUnitImageLink ? 0 : 0,
+            }}
+          >
+            {productData?.heaterUnitImageLink ? (
+              <img
+                height={'100%'}
+                width="100%"
+                src={productData?.heaterUnitImageLink}
+              />
+            ) : (
+              <img
+                height={'75%'}
+                width={'75%'}
+                src={'/no-image-found.png'}
+                style={{ paddingTop: 30, marginLeft: 20, marginRight: 20 }}
+              />
+            )}
+          </Box>
           {/* right */}
           <div
             style={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              marginRight: 20,
             }}
           >
             <div style={{ marginBottom: 20 }}>
